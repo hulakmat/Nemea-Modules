@@ -46,7 +46,7 @@ TemporaryHistory::TemporaryHistory(uint32_t size, uint32_t expected_fps, float f
     m_size = size * 2; // allocate twice as big bloom filter (overlap is equal to size)
     m_overlap_point = size;
     bloom_parameters param;
-    param.projected_element_count = m_size * expected_fps;
+    param.projected_element_count = (uint64_t) m_size * expected_fps;
     param.false_positive_probability = fp;
     param.compute_optimal_parameters();
     m_current = new bloom_filter(param);
